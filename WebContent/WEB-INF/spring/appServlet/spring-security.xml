@@ -66,6 +66,26 @@
         <beans:property name="username" value="root" />
         <beans:property name="password" value="" />
     </beans:bean>
+    
+     <!-- Hibernate 4 SessionFactory Bean definition -->
+    <beans:bean id="hibernate4AnnotatedSessionFactory"
+        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <beans:property name="dataSource" ref="dataSource" />
+        <beans:property name="annotatedClasses">
+            <beans:list>
+                <beans:value>com.journaldev.spring.model.Employees</beans:value>
+                <beans:value>com.journaldev.spring.model.Roles</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="hibernateProperties">
+            <beans:props>
+            	<beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>
+                <beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
+                </beans:prop>
+                <beans:prop key="hibernate.show_sql">true</beans:prop>
+            </beans:props>
+        </beans:property>
+    </beans:bean>
  
     <!-- If DataSource is configured in Tomcat Servlet Container -->
 <!--     <beans:bean id="dbDataSource" -->
